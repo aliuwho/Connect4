@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Connect 4</string>
+    <string name="play">Play</string>
+    <string name="select_a_mode">Select a Mode</string>
+    <string name="how_to_play">How to Play</string>
+    <string name="instructions1">
+        Tap the column you want to place a chip in, and the chip will fall to the lowest available slot. </string>
+    <string name="instructions2"> You must connect 4 in a row, vertically, horizontally, or diagonally to win the game. </string>
+    <string name="instructions3">
+        Block your opponent from connecting four. </string>
+</resources>
