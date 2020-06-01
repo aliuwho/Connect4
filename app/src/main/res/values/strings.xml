@@ -8,4 +8,5 @@
     <string name="instructions2"> You must connect 4 in a row, vertically, horizontally, or diagonally to win the game. </string>
     <string name="instructions3">
         Block your opponent from connecting four. </string>
+    <string name="return_to_menu">Return To Menu</string>
 </resources>
