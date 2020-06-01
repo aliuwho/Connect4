@@ -52,4 +52,17 @@ public class SelectActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    /**
+     * Called when user taps the Return To Menu button
+     */
+    public void returnToMenu(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+//        EditText editText = (EditText) findViewById(R.id.editText);
+//        String message = editText.getText().toString();
+//        intent.putExtra(EXTRA_MESSAGE, message);
+//        Button button = (Button) findViewById(R.id.playGame);
+        startActivity(intent);
+
+    }
 }
