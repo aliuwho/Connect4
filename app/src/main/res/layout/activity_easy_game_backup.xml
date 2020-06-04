@@ -54,71 +54,10 @@
                 android:id="@+id/group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:constraint_referenced_ids="connectBoard,linearLayout3,chipsTable" />
+                app:constraint_referenced_ids="connectBoard,columns,chipsTable" />
 
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/connectBoard"
-        app:layout_constraintEnd_toEndOf="@+id/connectBoard"
-        app:layout_constraintStart_toStartOf="@+id/connectBoard"
-        app:layout_constraintTop_toTopOf="@+id/connectBoard">
-
-        <Button
-            android:id="@+id/col1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/col2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/col3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/col4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/col5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/col6"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/col7"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:visibility="invisible" />
-
-    </LinearLayout>
 
     <!-- CONNECT 4 BOARD -->
 
@@ -521,10 +460,73 @@
         android:contentDescription="TODO"
         android:cropToPadding="false"
         android:src="@drawable/connect4board"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
+
+    <LinearLayout
+        android:id="@+id/columns"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/connectBoard"
+        app:layout_constraintEnd_toEndOf="@+id/connectBoard"
+        app:layout_constraintStart_toStartOf="@+id/connectBoard"
+        app:layout_constraintTop_toTopOf="@+id/connectBoard">
+
+        <Button
+            android:id="@+id/col1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="columnSelect"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/col2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/col3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/col4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/col5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/col6"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/col7"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

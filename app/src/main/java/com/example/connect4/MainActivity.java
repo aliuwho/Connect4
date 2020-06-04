@@ -48,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
      * Called when users tap the Quit button
      */
     public void quit(View view) {
-        finish();
-        System.exit(0);
+        /* DON'T DO THIS BECAUSE ANDROID ACTIVITY CYCLE */
+//        finish();
+//        System.exit(0);
+        System.out.println("i wish i could quit");
     }
 }
