@@ -34,7 +34,7 @@ public class FourBoard {
     public int addChip(int chip, int column) throws ColumnFullException {
         if (canAddChip(column)) {
             int i = 0;
-            while (/*i < ROWS && */chips[i][column] != EMPTY_CHIP) {
+            while (i < ROWS && chips[i][column] != EMPTY_CHIP) {
                 i++;
             }
             chips[i][column] = chip;
@@ -110,7 +110,7 @@ public class FourBoard {
     //          otherwise return true
     public boolean canAddChip(int col) {
         for (int i = 0; i < ROWS; i++) {
-            if (chips[i][col] != EMPTY_CHIP) {
+            if (chips[i][col] == EMPTY_CHIP) {
                 return true;
             }
         }

@@ -83,7 +83,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible"
+                            tools:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip01"
@@ -91,7 +93,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible"
+                            tools:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip02"
@@ -99,7 +103,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible"
+                            tools:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip03"
@@ -107,7 +113,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible"
+                            tools:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip04"
@@ -115,7 +123,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible"
+                            tools:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip05"
@@ -123,7 +133,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible"
+                            tools:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip06"
@@ -131,7 +143,9 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible"
+                            tools:visibility="invisible" />
                     </TableRow>
 
                     <TableRow
@@ -146,7 +160,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip11"
@@ -154,7 +169,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip12"
@@ -162,7 +178,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip13"
@@ -170,7 +187,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip14"
@@ -178,7 +196,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip15"
@@ -186,7 +205,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip16"
@@ -194,7 +214,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
                     </TableRow>
 
                     <TableRow
@@ -209,7 +230,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip21"
@@ -217,7 +239,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip22"
@@ -225,7 +248,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip23"
@@ -233,7 +257,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip24"
@@ -241,7 +266,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip25"
@@ -249,7 +275,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip26"
@@ -257,7 +284,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
                     </TableRow>
 
                     <TableRow
@@ -272,7 +300,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip31"
@@ -280,7 +309,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip32"
@@ -288,7 +318,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip33"
@@ -296,7 +327,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip34"
@@ -304,7 +336,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip35"
@@ -312,7 +345,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip36"
@@ -320,7 +354,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
                     </TableRow>
 
                     <TableRow
@@ -335,7 +370,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip41"
@@ -343,7 +379,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip42"
@@ -351,7 +388,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip43"
@@ -359,7 +397,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip44"
@@ -367,7 +406,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip45"
@@ -375,7 +415,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip46"
@@ -383,7 +424,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
                     </TableRow>
 
                     <TableRow
@@ -398,7 +440,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip51"
@@ -406,7 +449,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip52"
@@ -414,7 +458,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip53"
@@ -422,7 +467,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip54"
@@ -430,7 +476,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip55"
@@ -438,7 +485,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip56"
@@ -446,7 +494,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
-                            android:src="@drawable/red_square_custom" />
+                            android:src="@drawable/red_square_custom"
+                            android:visibility="invisible" />
                     </TableRow>
 
                 </TableLayout>
@@ -490,7 +539,7 @@
                         android:layout_weight="1"
                         android:alpha="0"
                         android:clickable="true"
-                        android:onClick="columnSelect"
+                        android:onClick="columnPress"
                         android:visibility="visible" />
 
                     <Button
@@ -499,7 +548,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:alpha="0"
-                        android:onClick="columnSelect"
+                        android:onClick="columnPress"
                         android:visibility="visible" />
 
                     <Button
@@ -508,7 +557,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:alpha="0"
-                        android:onClick="columnSelect"
+                        android:onClick="columnPress"
                         android:visibility="visible" />
 
                     <Button
@@ -517,7 +566,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:alpha="0"
-                        android:onClick="columnSelect"
+                        android:onClick="columnPress"
                         android:visibility="visible" />
 
                     <Button
@@ -526,7 +575,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:alpha="0"
-                        android:onClick="columnSelect"
+                        android:onClick="columnPress"
                         android:visibility="visible" />
 
                     <Button
@@ -535,7 +584,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:alpha="0"
-                        android:onClick="columnSelect"
+                        android:onClick="columnPress"
                         android:visibility="visible" />
 
                     <Button
@@ -544,7 +593,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:alpha="0"
-                        android:onClick="columnSelect"
+                        android:onClick="columnPress"
                         android:visibility="visible" />
 
                 </LinearLayout>

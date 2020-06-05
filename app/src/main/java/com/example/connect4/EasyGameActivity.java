@@ -1,93 +1,76 @@
 package com.example.connect4;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TableRow;
 
 import com.example.connect4.Exceptions.ColumnFullException;
-
-import java.lang.reflect.Field;
-import java.util.HashMap;
+import com.example.connect4.Games.EasyGame;
 
 public class EasyGameActivity extends AppCompatActivity {
     private FourBoard easyBoard;
-    private int playerPiece;
-    private HashMap<String, Integer> chipNames;
+    private EasyGame game;
+    private int player;
+    private int computer;
+    private int[] ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        game = new EasyGame();
         easyBoard = new FourBoard();
-        setContentView(R.layout.activity_easy_game);
-        // TODO: set playerpiece to player selection
-        playerPiece = R.drawable.blue_square_custom;
+        if (savedInstanceState == null) {
+            setContentView(R.layout.activity_easy_game);
+            // TODO: set player to player selection color in game select screen
+            player = 1;
+            computer = 1 - player;
+            ids = new int[]{R.id.chip00, R.id.chip01, R.id.chip02, R.id.chip03, R.id.chip04, R.id.chip05, R.id.chip06,
+                    R.id.chip10, R.id.chip11, R.id.chip12, R.id.chip13, R.id.chip14, R.id.chip15, R.id.chip16,
+                    R.id.chip20, R.id.chip21, R.id.chip22, R.id.chip23, R.id.chip24, R.id.chip25, R.id.chip26,
+                    R.id.chip30, R.id.chip31, R.id.chip32, R.id.chip33, R.id.chip34, R.id.chip35, R.id.chip36,
+                    R.id.chip40, R.id.chip41, R.id.chip42, R.id.chip43, R.id.chip44, R.id.chip45, R.id.chip46,
+                    R.id.chip50, R.id.chip51, R.id.chip52, R.id.chip53, R.id.chip54, R.id.chip55, R.id.chip56};
 
-//        putRows(chipNames);
+        } else {
+            easyBoard.setChips((int[][]) savedInstanceState.get("chips"));
+            ids = (int[]) savedInstanceState.get("ids");
+        }
+        // TODO: figure out saved instance states
+        // TODO: add a new game function (which resets activity completely) & persistence (which continues activity)
+        // TODO: game over functionality
+
     }
 
-//    public void putRows(HashMap map) {
-//        for (int r = 0; r < FourBoard.ROWS; r++) {
-//            putCols(map, r);
-//        }
-//    }
-//
-//    public void putCols(HashMap map, int row) {
-//        switch (row) {
-//            case 0:
-//                col0(map);
-//                break;
-//            case 1:
-//                tableRow = findViewById(R.id.row1);
-//                break;
-//            case 2:
-//                tableRow = findViewById(R.id.row2);
-//                break;
-//            case 3:
-//                tableRow = findViewById(R.id.row3);
-//                break;
-//            case 4:
-//                tableRow = findViewById(R.id.row4);
-//                break;
-//            case 5:
-//                tableRow = findViewById(R.id.row5);
-//                break;
-//            default:
-//                tableRow = null;
-//                break;
-//
-//        }
-//    }
-//
-//    private void col0(HashMap map) {
-//        map.put("chip00", R.id.chip00);
-//        map.put("chip01", R.id.chip01);
-//    }
-
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("ids", ids);
+        outState.putSerializable("chips", easyBoard.getChips());
+    }
 
     /**
-     * TODO: lmao
+     * runs player move on button press (aka when a column is tapped)
      */
-    public void columnSelect(View view) {
-//        Button button = findViewById(R.id.col1);
-//        button.setVisibility(View.VISIBLE);
-//        view.setVisibility(View.INVISIBLE);
-//        view.getId();
+    public void columnPress(View view) {
         // because this is the player tap button
-        int color = 1;
         try {
-            placePiece(color, view.getId());
+            placePiece(player, view.getId());
         } catch (ColumnFullException e) {
-            e.printStackTrace();
+//            TODO:   warn that column is full
         }
-//        view.setAlpha(1);
     }
 
-    public int placeChip(int id) throws ColumnFullException {
+    /**
+     * finds column corresponding to button press ID
+     *
+     * @param id representing button press ID
+     * @return column number
+     */
+    private int findColumn(int id) {
 //        findViewById(id).setAlpha(1);
         switch (id) {
             case R.id.col1:
@@ -112,51 +95,31 @@ public class EasyGameActivity extends AppCompatActivity {
     // MODIFIES: this
     // EFFECTS: changes graphics of lowest empty chip in given column to match color
     private void placePiece(int color, int id) throws ColumnFullException {
-        int col = placeChip(id);
+        int col = findColumn(id);
         int row = easyBoard.addChip(color, col);
-//        String name = "chip" + col + row;
-//        String name = "chip00";
-//        int resourceId = this.getResources().getIdentifier(name, "layout", this.getPackageName());
-        TableRow tb = findViewById(R.id.row1);
-        int resourceId = R.id.chip00;
-        ImageView img = findViewById(resourceId);
-        img.setImageResource(R.drawable.blue_square_custom);
+        updatePieceGraphics(color, ids[(FourBoard.ROWS - row - 1) * 7 + col]);
+//        ImageView img = findViewById(ids[(FourBoard.ROWS - row - 1) * 7 + col]);
+//        img.setVisibility(View.VISIBLE);
+//        img.setImageResource(R.drawable.blue_square_custom);
     }
 
-
-    public static int getResId(String resName, Class<?> c) {
-
-        try {
-            Field idField = c.getDeclaredField(resName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
+    // EFFECTS: displays piece with given id and color
+    private void updatePieceGraphics(int color, int id) {
+        ImageView img = findViewById(id);
+        img.setVisibility(View.VISIBLE);
+        if (color == 1) {
+            img.setImageResource(R.drawable.blue_square_custom);
+        } else {
+            img.setImageResource(R.drawable.red_square_custom);
         }
     }
-
-    public static int getId(String resourceName, Class<?> c) {
-        try {
-            Field idField = c.getDeclaredField(resourceName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
-            throw new RuntimeException("No resource ID found for: "
-                    + resourceName + " / " + c, e);
-        }
-    }
-
 
     /**
      * Called when user taps the How To Play button
      */
     public void howToPlay(View view) {
         Intent intent = new Intent(this, HowToPlayActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
-//        Button button = (Button) findViewById(R.id.playGame);
         startActivity(intent);
-
     }
 
     /**
@@ -164,10 +127,6 @@ public class EasyGameActivity extends AppCompatActivity {
      */
     public void returnToMenu(View view) {
         Intent intent = new Intent(this, MainActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
-//        Button button = (Button) findViewById(R.id.playGame);
         startActivity(intent);
 
     }
