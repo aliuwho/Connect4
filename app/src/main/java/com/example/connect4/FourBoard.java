@@ -1,6 +1,7 @@
 package com.example.connect4;
 
 import com.example.connect4.Exceptions.ColumnFullException;
+import com.example.connect4.Exceptions.FullBoardEndGameException;
 
 import java.util.Arrays;
 
@@ -11,8 +12,8 @@ public class FourBoard {
     // note: can use x's and filled circles
     // empty spaces are represented using 0
     // filled spaces are represented using one of:
-    //      - 1 (representing a color) (printed using 〇 or X)
-    //      - 2 (representing a color different from 2) (printed using ⬤)
+    //      - 1 (representing a color)
+    //      - 2 (representing a color different from 2)
 
     private int[][] chips;
     public static final int ROWS = 6;
@@ -163,14 +164,21 @@ public class FourBoard {
     }
 
     // MODIFIES: this
-    // EFFECTS: sets chips to given chips layout
-    public void setChips(int[][] chips) {
-        this.chips = chips;
+    // EFFECTS: sets chips to copy of initial chips layout
+    public void setChips(int[][] initial) {
+        int[][] copy = new int[initial.length][initial[0].length];
+        for (int r = 0; r < initial.length; r++) {
+            System.arraycopy(initial[r], 0, copy[r], 0, initial[r].length);
+        }
+        this.chips = copy;
     }
 
-    // EFFECTS: if the game is over, returns the winning color; else, returns null
-    public int isGameOver() {
-        if (isFourAcross() != -1) {
+    // EFFECTS: if the game is over, returns the winning color; else, returns -1 or
+    //          if the board is full, throws FullBoardGameException
+    public int isGameOver() throws FullBoardEndGameException {
+        if (isFull()) {
+            throw new FullBoardEndGameException();
+        } else if (isFourAcross() != -1) {
             return isFourAcross();
         } else if (isFourUpDown() != -1) {
             return isFourUpDown();
@@ -178,6 +186,15 @@ public class FourBoard {
             return isFourDiagonal();
         }
 
+    }
+
+    public boolean isFull() {
+        for (int i = 0; i < FourBoard.COLS; i++) {
+            if (!canAddChip(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
