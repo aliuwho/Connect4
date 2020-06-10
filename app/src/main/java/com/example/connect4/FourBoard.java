@@ -33,7 +33,9 @@ public class FourBoard {
     // EFFECTS: if canAddChip, adds a chip of chipType to lowest position on board at column and returns chip row;
     //          otherwise, throws a ColumnFullException
     public int addChip(int chip, int column) throws ColumnFullException {
-        if (canAddChip(column)) {
+        if (column < 0 || column > 6) {
+            throw new IllegalArgumentException();
+        } else if (canAddChip(column)) {
             int i = 0;
             while (i < ROWS && chips[i][column] != EMPTY_CHIP) {
                 i++;

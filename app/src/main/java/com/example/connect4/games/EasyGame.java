@@ -5,8 +5,6 @@ import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
 
 public class EasyGame extends Game {
-    private static EasyGame easyGame;
-
     public EasyGame() {
         super();
     }

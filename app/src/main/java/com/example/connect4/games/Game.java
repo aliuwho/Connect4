@@ -14,8 +14,8 @@ public abstract class Game {
             R.id.chip30, R.id.chip31, R.id.chip32, R.id.chip33, R.id.chip34, R.id.chip35, R.id.chip36,
             R.id.chip40, R.id.chip41, R.id.chip42, R.id.chip43, R.id.chip44, R.id.chip45, R.id.chip46,
             R.id.chip50, R.id.chip51, R.id.chip52, R.id.chip53, R.id.chip54, R.id.chip55, R.id.chip56};
-    protected static final int PERSON = 1;
-    protected static final int COMPUTER = 2;
+    public static final int PERSON = 1;
+    public static final int COMPUTER = 2;
 
     // new game, no data;
     public Game() {
@@ -38,7 +38,7 @@ public abstract class Game {
     abstract public int computerPlay() throws EndGameException, ColumnFullException;
 
     // MODIFIES: this
-    // EFFECTS: runs player and computer moves
+    // EFFECTS: returns row of column that player plays
     public int personPlay(int column) throws ColumnFullException, EndGameException {
         return board.addChip(PERSON, column);
     }
@@ -49,6 +49,10 @@ public abstract class Game {
 
     public static int getPERSON() {
         return PERSON;
+    }
+
+    public int getChipId(int row, int col) {
+        return ids[(FourBoard.ROWS - row - 1) * 7 + col];
     }
 
 //    public int[] getIds() {

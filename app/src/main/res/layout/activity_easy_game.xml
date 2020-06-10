@@ -7,6 +7,7 @@
     android:background="@color/colorPrimary"
     tools:context=".EasyGameActivity">
 
+                            android:visibility="invisible" />
     <!-- COLUMN BUTTONS -->
     <ScrollView
         android:layout_width="match_parent"
@@ -206,7 +207,7 @@
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
                             android:src="@drawable/red_square_custom"
-                            android:visibility="invisible" />
+                            android:visibility="invisible"/>
 
                         <ImageView
                             android:id="@+id/chip16"

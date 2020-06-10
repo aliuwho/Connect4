@@ -15,30 +15,31 @@ import com.example.connect4.games.EasyGame;
 import com.example.connect4.games.Game;
 
 public class EasyGameActivity extends AppCompatActivity {
-    private EasyGame game;
+    private Game game;
 //    private int[] ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         game = new EasyGame();
-        if (savedInstanceState == null) {
-            setContentView(R.layout.activity_easy_game);
-            // TODO: set player to player selection color in game select screen
-//            ids = new int[]{R.id.chip00, R.id.chip01, R.id.chip02, R.id.chip03, R.id.chip04, R.id.chip05, R.id.chip06,
-//                    R.id.chip10, R.id.chip11, R.id.chip12, R.id.chip13, R.id.chip14, R.id.chip15, R.id.chip16,
-//                    R.id.chip20, R.id.chip21, R.id.chip22, R.id.chip23, R.id.chip24, R.id.chip25, R.id.chip26,
-//                    R.id.chip30, R.id.chip31, R.id.chip32, R.id.chip33, R.id.chip34, R.id.chip35, R.id.chip36,
-//                    R.id.chip40, R.id.chip41, R.id.chip42, R.id.chip43, R.id.chip44, R.id.chip45, R.id.chip46,
-//                    R.id.chip50, R.id.chip51, R.id.chip52, R.id.chip53, R.id.chip54, R.id.chip55, R.id.chip56};
-
-        } else {
-            game.getBoard().setChips((int[][]) savedInstanceState.get("chips"));
-//            ids = (int[]) savedInstanceState.get("ids");
-        }
-        // TODO: figure out saved instance states
-        // TODO: add a new game function (which resets activity completely) & persistence (which continues activity)
-        // TODO: game over functionality
+//        if (savedInstanceState == null) {
+//            setContentView(R.layout.activity_easy_game);
+//            // TODO: set player to player selection color in game select screen
+////            ids = new int[]{R.id.chip00, R.id.chip01, R.id.chip02, R.id.chip03, R.id.chip04, R.id.chip05, R.id.chip06,
+////                    R.id.chip10, R.id.chip11, R.id.chip12, R.id.chip13, R.id.chip14, R.id.chip15, R.id.chip16,
+////                    R.id.chip20, R.id.chip21, R.id.chip22, R.id.chip23, R.id.chip24, R.id.chip25, R.id.chip26,
+////                    R.id.chip30, R.id.chip31, R.id.chip32, R.id.chip33, R.id.chip34, R.id.chip35, R.id.chip36,
+////                    R.id.chip40, R.id.chip41, R.id.chip42, R.id.chip43, R.id.chip44, R.id.chip45, R.id.chip46,
+////                    R.id.chip50, R.id.chip51, R.id.chip52, R.id.chip53, R.id.chip54, R.id.chip55, R.id.chip56};
+//
+//        } else {
+//            game.getBoard().setChips((int[][]) savedInstanceState.get("chips"));
+////            ids = (int[]) savedInstanceState.get("ids");
+//        }
+//        // TODO: figure out saved instance states
+//        // TODO: add a new game function (which resets activity completely) & persistence (which continues activity)
+//        // TODO: game over functionality
+        setContentView(R.layout.activity_easy_game);
 
     }
 
@@ -55,8 +56,13 @@ public class EasyGameActivity extends AppCompatActivity {
     public void columnPress(View view) {
         // because this is the player tap button
         try {
-            updatePieceGraphics(Game.getPERSON(), game.personPlay(findColumn(view.getId())));
-            updatePieceGraphics(Game.getCOMPUTER(), game.computerPlay());
+            int col = findColumn(view.getId());
+            int row = game.personPlay(col);
+            int id = game.getChipId(row, col);
+            updatePieceGraphics(Game.PERSON, id);
+
+//            updatePieceGraphics(Game.getPERSON(), view.getId());
+//            updatePieceGraphics(Game.getCOMPUTER(), game.computerPlay());
 //            placePiece(player, view.getId());
         } catch (ColumnFullException e) {
 //            TODO:   warn that column is full
@@ -64,7 +70,7 @@ public class EasyGameActivity extends AppCompatActivity {
             // TODO: end game stuff
             if (e.getClass() == FullBoardEndGameException.class) {
                 //game over :(
-            }else {
+            } else {
                 //congratulate winner
             }
 //            e.printStackTrace();
@@ -127,5 +133,6 @@ public class EasyGameActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 
 }
