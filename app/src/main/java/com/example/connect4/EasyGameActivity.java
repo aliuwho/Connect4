@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -60,6 +61,10 @@ public class EasyGameActivity extends AppCompatActivity {
             int row = game.personPlay(col);
             int id = game.getChipId(row, col);
             updatePieceGraphics(Game.PERSON, id);
+
+            Pair computer = game.computerPlay();
+            int id2 = game.getChipId((int) computer.first, (int) computer.second);
+            updatePieceGraphics(Game.COMPUTER, id2);
 
 //            updatePieceGraphics(Game.getPERSON(), view.getId());
 //            updatePieceGraphics(Game.getCOMPUTER(), game.computerPlay());

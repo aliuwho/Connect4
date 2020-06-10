@@ -192,7 +192,7 @@ public class FourBoard {
 
     public boolean isFull() {
         for (int i = 0; i < FourBoard.COLS; i++) {
-            if (!canAddChip(i)) {
+            if (canAddChip(i)) {
                 return false;
             }
         }

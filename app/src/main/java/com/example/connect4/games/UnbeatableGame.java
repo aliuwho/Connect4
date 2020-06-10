@@ -1,5 +1,7 @@
 package com.example.connect4.games;
 
+import android.util.Pair;
+
 import com.example.connect4.Exceptions.ColumnFullException;
 import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
@@ -22,14 +24,14 @@ public class UnbeatableGame extends Game {
     }
 
     @Override
-    public int computerPlay() throws EndGameException, ColumnFullException {
+    public Pair computerPlay() throws EndGameException, ColumnFullException {
         if (board.isFull()) {
             throw new FullBoardEndGameException();
         } else {
             FourBoard duplicate = new FourBoard();
             duplicate.setChips(board.getChips());
             int ret = fnForBoard(duplicate, new ArrayList<Integer>(), new HashMap<Integer, Integer>());
-            return board.addChip(COMPUTER, ret);
+            return new Pair(board.addChip(COMPUTER, ret), ret);
         }
     }
 

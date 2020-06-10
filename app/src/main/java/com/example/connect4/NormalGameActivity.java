@@ -57,7 +57,7 @@ public class NormalGameActivity extends AppCompatActivity {
         // because this is the player tap button
         try {
             updatePieceGraphics(Game.getPERSON(), game.personPlay(findColumn(view.getId())));
-            updatePieceGraphics(Game.getCOMPUTER(), game.computerPlay());
+//            updatePieceGraphics(Game.getCOMPUTER(), game.computerPlay());
 //            placePiece(player, view.getId());
         } catch (ColumnFullException e) {
 //            TODO:   warn that column is full

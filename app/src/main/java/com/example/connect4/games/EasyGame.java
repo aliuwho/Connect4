@@ -1,5 +1,7 @@
 package com.example.connect4.games;
 
+import android.util.Pair;
+
 import com.example.connect4.Exceptions.ColumnFullException;
 import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
@@ -14,14 +16,14 @@ public class EasyGame extends Game {
     }
 
     @Override
-    public int computerPlay() throws EndGameException {
+    public Pair computerPlay() throws EndGameException {
         if (board.isFull()) {
             throw new FullBoardEndGameException();
         } else {
-            int ret;
             try {
-                ret = board.addChip(COMPUTER, (int) (Math.random() * 7));
-                return ret;
+                int col = (int) (Math.random() * 7);
+                int row = board.addChip(COMPUTER, col);
+                return new Pair(row, col);
             } catch (ColumnFullException e) {
                 return computerPlay();
             }
