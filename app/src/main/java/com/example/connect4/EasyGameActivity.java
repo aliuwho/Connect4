@@ -15,6 +15,8 @@ import com.example.connect4.Exceptions.FullBoardEndGameException;
 import com.example.connect4.games.EasyGame;
 import com.example.connect4.games.Game;
 
+import java.util.concurrent.TimeUnit;
+
 public class EasyGameActivity extends AppCompatActivity {
     private Game game;
 //    private int[] ids;
@@ -60,11 +62,8 @@ public class EasyGameActivity extends AppCompatActivity {
             int col = findColumn(view.getId());
             int row = game.personPlay(col);
             int id = game.getChipId(row, col);
+//            animate(Game.PERSON, R.id.chip44);
             updatePieceGraphics(Game.PERSON, id);
-
-            Pair computer = game.computerPlay();
-            int id2 = game.getChipId((int) computer.first, (int) computer.second);
-            updatePieceGraphics(Game.COMPUTER, id2);
 
 //            updatePieceGraphics(Game.getPERSON(), view.getId());
 //            updatePieceGraphics(Game.getCOMPUTER(), game.computerPlay());
@@ -79,6 +78,16 @@ public class EasyGameActivity extends AppCompatActivity {
                 //congratulate winner
             }
 //            e.printStackTrace();
+        }
+        try {
+            Pair computer = game.computerPlay();
+            int id2 = game.getChipId((int) computer.first, (int) computer.second);
+            updatePieceGraphics(Game.COMPUTER, id2);
+
+        } catch (ColumnFullException e) {
+            e.printStackTrace();
+        } catch (EndGameException e) {
+            e.printStackTrace();
         }
     }
 
@@ -120,6 +129,18 @@ public class EasyGameActivity extends AppCompatActivity {
         } else {
             img.setImageResource(R.drawable.red_square_custom);
         }
+    }
+
+    // EFFECTS: displays piece with given id and color
+    private void animate(int color, int id) {
+        ImageView img = findViewById(id);
+        img.setVisibility(View.VISIBLE);
+        if (color == 1) {
+            img.setImageResource(R.drawable.blue_square_custom);
+        } else {
+            img.setImageResource(R.drawable.red_square_custom);
+        }
+        img.setVisibility(View.INVISIBLE);
     }
 
     /**

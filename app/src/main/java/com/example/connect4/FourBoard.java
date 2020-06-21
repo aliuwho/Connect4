@@ -54,53 +54,46 @@ public class FourBoard {
 
     // EFFECTS: returns type of chips if there are four identical, non-empty chips in a row;
     //          and -1 otherwise
-    public int isFourAcross() {
+    public boolean isFourAcross(int r, int c, int type) {
         int count = 0;
-        for (int type : TYPES) {
-            for (int r = 0; r < ROWS; r++) {
-                for (int c = 0; c < COLS; c++) {
-                    if (chips[r][c] != type) {
-                        count++;
-                    } else {
-                        count = 0;
-                    }
-                    if (count == 4) {
-                        return type;
-                    }
-                }
+        for (int i = c; i < COLS; i++) {
+            if (chips[r][i] == type) {
+                count++;
+            } else {
+                count = 0;
+            }
+            if (count == 4) {
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
     // EFFECTS: returns type of chip if four identical, non-empty chips in a column in a row; -1 otherwise
-    public int isFourUpDown() {
+    public boolean isFourUpDown(int r, int c, int type) {
         int count = 0;
-        for (int type : TYPES) {
-            for (int c = 0; c < COLS; c++) {
-                for (int r = 0; r < ROWS; r++) {
-                    if (chips[r][c] != type) {
-                        count++;
-                    } else {
-                        count = 0;
-                    }
-                    if (count == 4) {
-                        return type;
-                    }
-                }
+        for (int i = r; i < ROWS; i++) {
+            if (chips[i][c] == type) {
+                count++;
+            } else {
                 count = 0;
             }
+            if (count == 4) {
+                return true;
+            }
         }
-        return -1;
+
+        return false;
     }
 
     // EFFECTS: returns Color of chips if four identical, non-empty chips are in a diagonal;
     // -1 otherwise
-    public int isFourDiagonal() {
+    public int isConnectFour() {
         for (int type : TYPES) {
             for (int r = 0; r < ROWS; r++) {
                 for (int c = 0; c < COLS; c++) {
-                    if (chips[r][c] != type && (isRightDiagonal(r, c, type) || isLeftDiagonal(r, c, type))) {
+                    if (chips[r][c] == type && (isRightDiagonal(r, c, type) || isLeftDiagonal(r, c, type) ||
+                            isFourAcross(r, c, type) || isFourUpDown(r, c, type))) {
                         return type;
                     }
                 }
@@ -126,7 +119,7 @@ public class FourBoard {
         int c = col;
         int count = 0;
         while (r < ROWS && c < COLS) {
-            if (chips[r][c] != type) {
+            if (chips[r][c] == type) {
                 count++;
             } else {
                 count = 0;
@@ -146,7 +139,7 @@ public class FourBoard {
         int c = col;
         int count = 0;
         while (r < ROWS && c >= 0) {
-            if (chips[r][c] != type) {
+            if (chips[r][c] == type) {
                 count++;
             } else {
                 count = 0;
@@ -180,12 +173,8 @@ public class FourBoard {
     public int isGameOver() throws FullBoardEndGameException {
         if (isFull()) {
             throw new FullBoardEndGameException();
-        } else if (isFourAcross() != -1) {
-            return isFourAcross();
-        } else if (isFourUpDown() != -1) {
-            return isFourUpDown();
         } else {
-            return isFourDiagonal();
+            return isConnectFour();
         }
 
     }

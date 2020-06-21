@@ -36,20 +36,28 @@ public class NormalGame extends Game {
     private int[] tryMoves() throws FullBoardEndGameException {
         int[] options = {-1, -1};
         for (int i = 0; i < FourBoard.COLS; i++) {
-            FourBoard next = new FourBoard();
-//            int[][] temp = cloneChips(board.getChips());
-            next.setChips(board.getChips());
+            FourBoard duplicate = new FourBoard();
+            duplicate.setChips(board.getChips());
             try {
-                next.addChip(PERSON, i);
-                if (next.isGameOver() != -1 && options[1] == -1) {
+                duplicate.addChip(PERSON, i);
+                if (duplicate.isGameOver() != -1 && options[1] == -1) {
                     options[1] = i;
                 } else {
                     if (options[0] == -1) {
                         options[0] = i;
+                    } else {
+                        if ((int) (Math.random() * 2) == 1) {
+                            options[0] = i;
+                        }
                     }
                 }
             } catch (ColumnFullException e) {
                 //do nothing
+            } catch (FullBoardEndGameException e) {
+                duplicate.setChips(board.getChips());
+                if (duplicate.canAddChip(i)) {
+                    options[1] = i;
+                }
             }
         }
         return options;

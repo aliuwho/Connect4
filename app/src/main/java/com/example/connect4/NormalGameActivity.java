@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,6 +16,8 @@ import com.example.connect4.games.EasyGame;
 import com.example.connect4.games.Game;
 import com.example.connect4.games.NormalGame;
 
+import java.util.concurrent.TimeUnit;
+
 public class NormalGameActivity extends AppCompatActivity {
     private Game game;
 //    private int[] ids;
@@ -23,23 +26,24 @@ public class NormalGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         game = new NormalGame();
-        if (savedInstanceState == null) {
-            setContentView(R.layout.activity_normal_game);
-            // TODO: set player to player selection color in game select screen
-//            ids = new int[]{R.id.chip00, R.id.chip01, R.id.chip02, R.id.chip03, R.id.chip04, R.id.chip05, R.id.chip06,
-//                    R.id.chip10, R.id.chip11, R.id.chip12, R.id.chip13, R.id.chip14, R.id.chip15, R.id.chip16,
-//                    R.id.chip20, R.id.chip21, R.id.chip22, R.id.chip23, R.id.chip24, R.id.chip25, R.id.chip26,
-//                    R.id.chip30, R.id.chip31, R.id.chip32, R.id.chip33, R.id.chip34, R.id.chip35, R.id.chip36,
-//                    R.id.chip40, R.id.chip41, R.id.chip42, R.id.chip43, R.id.chip44, R.id.chip45, R.id.chip46,
-//                    R.id.chip50, R.id.chip51, R.id.chip52, R.id.chip53, R.id.chip54, R.id.chip55, R.id.chip56};
-
-        } else {
-            game.getBoard().setChips((int[][]) savedInstanceState.get("chips"));
-//            ids = (int[]) savedInstanceState.get("ids");
-        }
-        // TODO: figure out saved instance states
-        // TODO: add a new game function (which resets activity completely) & persistence (which continues activity)
-        // TODO: game over functionality
+//        if (savedInstanceState == null) {
+//            setContentView(R.layout.activity_easy_game);
+//            // TODO: set player to player selection color in game select screen
+////            ids = new int[]{R.id.chip00, R.id.chip01, R.id.chip02, R.id.chip03, R.id.chip04, R.id.chip05, R.id.chip06,
+////                    R.id.chip10, R.id.chip11, R.id.chip12, R.id.chip13, R.id.chip14, R.id.chip15, R.id.chip16,
+////                    R.id.chip20, R.id.chip21, R.id.chip22, R.id.chip23, R.id.chip24, R.id.chip25, R.id.chip26,
+////                    R.id.chip30, R.id.chip31, R.id.chip32, R.id.chip33, R.id.chip34, R.id.chip35, R.id.chip36,
+////                    R.id.chip40, R.id.chip41, R.id.chip42, R.id.chip43, R.id.chip44, R.id.chip45, R.id.chip46,
+////                    R.id.chip50, R.id.chip51, R.id.chip52, R.id.chip53, R.id.chip54, R.id.chip55, R.id.chip56};
+//
+//        } else {
+//            game.getBoard().setChips((int[][]) savedInstanceState.get("chips"));
+////            ids = (int[]) savedInstanceState.get("ids");
+//        }
+//        // TODO: figure out saved instance states
+//        // TODO: add a new game function (which resets activity completely) & persistence (which continues activity)
+//        // TODO: game over functionality
+        setContentView(R.layout.activity_normal_game);
 
     }
 
@@ -56,9 +60,10 @@ public class NormalGameActivity extends AppCompatActivity {
     public void columnPress(View view) {
         // because this is the player tap button
         try {
-            updatePieceGraphics(Game.getPERSON(), game.personPlay(findColumn(view.getId())));
-//            updatePieceGraphics(Game.getCOMPUTER(), game.computerPlay());
-//            placePiece(player, view.getId());
+            int col = findColumn(view.getId());
+            int row = game.personPlay(col);
+            int id = game.getChipId(row, col);
+            updatePieceGraphics(Game.PERSON, id);
         } catch (ColumnFullException e) {
 //            TODO:   warn that column is full
         } catch (EndGameException e) {
@@ -69,6 +74,16 @@ public class NormalGameActivity extends AppCompatActivity {
                 //congratulate winner
             }
 //            e.printStackTrace();
+        }
+        try {
+            Pair computer = game.computerPlay();
+            int id2 = game.getChipId((int) computer.first, (int) computer.second);
+            updatePieceGraphics(Game.COMPUTER, id2);
+
+        } catch (ColumnFullException e) {
+            e.printStackTrace();
+        } catch (EndGameException e) {
+            e.printStackTrace();
         }
     }
 
@@ -112,6 +127,18 @@ public class NormalGameActivity extends AppCompatActivity {
         }
     }
 
+    // EFFECTS: displays piece with given id and color
+    private void animate(int color, int id) {
+        ImageView img = findViewById(id);
+        img.setVisibility(View.VISIBLE);
+        if (color == 1) {
+            img.setImageResource(R.drawable.blue_square_custom);
+        } else {
+            img.setImageResource(R.drawable.red_square_custom);
+        }
+        img.setVisibility(View.INVISIBLE);
+    }
+
     /**
      * Called when user taps the How To Play button
      */
@@ -128,5 +155,6 @@ public class NormalGameActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 
 }
