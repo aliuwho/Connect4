@@ -98,7 +98,7 @@ public class GameActivity {
 
     private void warnColumnFull() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("Error");
+        builder.setTitle("Snug as a Bug");
         builder.setMessage("The column is full! Try a different one.");
         builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -117,31 +117,21 @@ public class GameActivity {
     }
 
     public void noWin() {
-//        final boolean[] click = {true};
-//        final PopupWindow window = new PopupWindow();
-//        final LinearLayout layout = new LinearLayout(this);
-//        LinearLayout mainLayout = new LinearLayout(this);
-//        TextView tv = new TextView(this);
-//        Button but = new Button(this);
-//        but.setText("Click Me");
-//        but.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (click[0]) {
-//                    window.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-//                    window.update(50, 50, 300, 80);
-//                    click[0] = false;
-//                } else {
-//                    window.dismiss();
-//                    click[0] = true;
-//                }
-//            }
-//        });
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("It's a Tie");
         builder.setMessage("Nobody won this round.");
-        builder.setCancelable(true);
+        builder.setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                activity.recreate();
+            }
+        });
+        builder.setNegativeButton("Return to Menu", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                activity.finish();
+            }
+        });
         AlertDialog dialog = builder.create();
         dialog.show();
 
