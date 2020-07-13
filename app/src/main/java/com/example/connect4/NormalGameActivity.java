@@ -1,11 +1,13 @@
 package com.example.connect4;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.connect4.Exceptions.ColumnFullException;
@@ -150,7 +152,26 @@ public class NormalGameActivity extends AppCompatActivity {
     public void returnToMenu(View view) {
 //        Intent intent = new Intent(this, MainActivity.class);
 //        startActivity(intent);
-        finish();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(NormalGameActivity.this);
+        builder.setTitle("Exit");
+        builder.setMessage("Are you sure you want to quit? Your game will not be saved.");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
     }
 
