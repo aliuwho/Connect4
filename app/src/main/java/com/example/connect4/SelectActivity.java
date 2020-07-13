@@ -28,19 +28,19 @@ public class SelectActivity extends AppCompatActivity {
 
     }
 
-//    /**
-//     * Called when user taps the Normal button
-//     */
-//    public void normalGame(View view) {
-//        Intent intent = new Intent(this, NormalGameActivity.class);
-////        EditText editText = (EditText) findViewById(R.id.editText);
-////        String message = editText.getText().toString();
-////        intent.putExtra(EXTRA_MESSAGE, message);
-////        Button button = (Button) findViewById(R.id.playGame);
-//        startActivity(intent);
-//        finish();
-//
-//    }
+    /**
+     * Called when user taps the Normal button
+     */
+    public void normalGame(View view) {
+        Intent intent = new Intent(this, NormalGameActivity.class);
+//        EditText editText = (EditText) findViewById(R.id.editText);
+//        String message = editText.getText().toString();
+//        intent.putExtra(EXTRA_MESSAGE, message);
+//        Button button = (Button) findViewById(R.id.playGame);
+        startActivity(intent);
+        finish();
+
+    }
 
     /**
      * Called when user taps the Return To Menu button
