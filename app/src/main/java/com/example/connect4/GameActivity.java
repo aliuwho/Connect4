@@ -2,55 +2,27 @@ package com.example.connect4;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.connect4.Exceptions.ColumnFullException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
-import com.example.connect4.games.EasyGame;
 import com.example.connect4.games.Game;
 import com.example.connect4.games.GameMove;
 
-public class EasyGameActivity extends AppCompatActivity {
+public abstract class GameActivity {
     private Game game;
-//    private int[] ids;
+    protected AppCompatActivity activity;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        game = new EasyGame();
-//        if (savedInstanceState == null) {
-//            setContentView(R.layout.activity_easy_game);
-//            // TODO: set player to player selection color in game select screen
-////            ids = new int[]{R.id.chip00, R.id.chip01, R.id.chip02, R.id.chip03, R.id.chip04, R.id.chip05, R.id.chip06,
-////                    R.id.chip10, R.id.chip11, R.id.chip12, R.id.chip13, R.id.chip14, R.id.chip15, R.id.chip16,
-////                    R.id.chip20, R.id.chip21, R.id.chip22, R.id.chip23, R.id.chip24, R.id.chip25, R.id.chip26,
-////                    R.id.chip30, R.id.chip31, R.id.chip32, R.id.chip33, R.id.chip34, R.id.chip35, R.id.chip36,
-////                    R.id.chip40, R.id.chip41, R.id.chip42, R.id.chip43, R.id.chip44, R.id.chip45, R.id.chip46,
-////                    R.id.chip50, R.id.chip51, R.id.chip52, R.id.chip53, R.id.chip54, R.id.chip55, R.id.chip56};
-//
-//        } else {
-//            game.getBoard().setChips((int[][]) savedInstanceState.get("chips"));
-////            ids = (int[]) savedInstanceState.get("ids");
-//        }
-//        // TODO: figure out saved instance states
-//        // TODO: add a new game function (which resets activity completely) & persistence (which continues activity)
-//        // TODO: game over functionality
-        setContentView(R.layout.activity_easy_game);
-
-
+    protected void setActivity(AppCompatActivity activity) {
+        this.activity = activity;
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-//        outState.putSerializable("ids", game.getIds());
-        outState.putSerializable("chips", game.getBoard().getChips());
+    protected void setGame(Game game) {
+        this.game = game;
     }
 
     /**
@@ -128,7 +100,7 @@ public class EasyGameActivity extends AppCompatActivity {
     }
 
     private void warnColumnFull() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Error");
         builder.setMessage("The column is full! Try a different one.");
         builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -169,7 +141,7 @@ public class EasyGameActivity extends AppCompatActivity {
 //            }
 //        });
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("It's a Tie");
         builder.setMessage("Nobody won this round.");
         builder.setCancelable(true);
@@ -209,7 +181,7 @@ public class EasyGameActivity extends AppCompatActivity {
 
     // EFFECTS: displays piece with given id and color
     private void updatePieceGraphics(int color, int id) {
-        ImageView img = findViewById(id);
+        ImageView img = activity.findViewById(id);
         img.setVisibility(View.VISIBLE);
         if (color == 1) {
             img.setImageResource(R.drawable.blue_square_custom);
@@ -234,8 +206,8 @@ public class EasyGameActivity extends AppCompatActivity {
      * Called when user taps the How To Play button
      */
     public void howToPlay(View view) {
-        Intent intent = new Intent(this, HowToPlayActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent(activity, HowToPlayActivity.class);
+        activity.startActivity(intent);
     }
 
     /**
@@ -244,13 +216,13 @@ public class EasyGameActivity extends AppCompatActivity {
     public void returnToMenu(View view) {
 //        Intent intent = new Intent(this, MainActivity.class);
 //        startActivity(intent);
-        final AlertDialog.Builder builder = new AlertDialog.Builder(EasyGameActivity.this);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Exit");
         builder.setMessage("Are you sure you want to quit? Your game will not be saved.");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
+                activity.finish();
 
             }
         });
@@ -266,6 +238,5 @@ public class EasyGameActivity extends AppCompatActivity {
         dialog.show();
 
     }
-
 
 }

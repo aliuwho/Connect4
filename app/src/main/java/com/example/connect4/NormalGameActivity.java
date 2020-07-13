@@ -126,17 +126,17 @@ public class NormalGameActivity extends AppCompatActivity {
         }
     }
 
-    // EFFECTS: displays piece with given id and color
-    private void animate(int color, int id) {
-        ImageView img = findViewById(id);
-        img.setVisibility(View.VISIBLE);
-        if (color == 1) {
-            img.setImageResource(R.drawable.blue_square_custom);
-        } else {
-            img.setImageResource(R.drawable.red_square_custom);
-        }
-        img.setVisibility(View.INVISIBLE);
-    }
+//    // EFFECTS: displays piece with given id and color
+//    private void animate(int color, int id) {
+//        ImageView img = findViewById(id);
+//        img.setVisibility(View.VISIBLE);
+//        if (color == 1) {
+//            img.setImageResource(R.drawable.blue_square_custom);
+//        } else {
+//            img.setImageResource(R.drawable.red_square_custom);
+//        }
+//        img.setVisibility(View.INVISIBLE);
+//    }
 
     /**
      * Called when user taps the How To Play button

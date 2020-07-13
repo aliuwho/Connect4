@@ -1,7 +1,6 @@
 package com.example.connect4.games;
 
 import com.example.connect4.Exceptions.ColumnFullException;
-import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
 import com.example.connect4.FourBoard;
 
@@ -16,14 +15,14 @@ public class NormalGame extends Game {
     }
 
     @Override
-    public GameMove computerPlay() throws EndGameException, ColumnFullException {
+    public GameMove computerPlay() throws ColumnFullException, FullBoardEndGameException {
         if (board.isFull()) {
             throw new FullBoardEndGameException();
         } else {
             int i = firstMove(tryMoves());
             if (i == -1) {
                 System.out.println("something went wrong... no moves available but board is not full");
-                throw new EndGameException();
+                throw new IllegalArgumentException();
             } else {
                 return new GameMove(board.addChip(COMPUTER, i), i);
             }

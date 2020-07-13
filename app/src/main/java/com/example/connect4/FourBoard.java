@@ -1,7 +1,6 @@
 package com.example.connect4;
 
 import com.example.connect4.Exceptions.ColumnFullException;
-import com.example.connect4.Exceptions.FullBoardEndGameException;
 
 import java.util.Arrays;
 
@@ -168,16 +167,7 @@ public class FourBoard {
         this.chips = copy;
     }
 
-    // EFFECTS: if the game is over, returns the winning color; else, returns -1 or
-    //          if the board is full, throws FullBoardGameException
-    public int isGameOver() throws FullBoardEndGameException {
-        if (isFull()) {
-            throw new FullBoardEndGameException();
-        } else {
-            return isConnectFour();
-        }
 
-    }
 
     public boolean isFull() {
         for (int i = 0; i < FourBoard.COLS; i++) {

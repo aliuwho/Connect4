@@ -1,7 +1,6 @@
 package com.example.connect4.games;
 
 import com.example.connect4.Exceptions.ColumnFullException;
-import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
 
 public class EasyGame extends Game {
@@ -14,7 +13,7 @@ public class EasyGame extends Game {
     }
 
     @Override
-    public GameMove computerPlay() throws EndGameException {
+    public GameMove computerPlay() throws FullBoardEndGameException {
         if (board.isFull()) {
             throw new FullBoardEndGameException();
         } else {
