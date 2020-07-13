@@ -11,13 +11,8 @@ public class EasyGameActivity extends GameActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setGameManager();
         setContentView(R.layout.activity_easy_game);
-    }
-
-    @Override
-    protected void setGameManager() {
-        gameManager = new GameManager(new EasyGame());
+        setGame(new EasyGame());
     }
 
 }

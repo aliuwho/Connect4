@@ -1,6 +1,7 @@
 package com.example.connect4.games;
 
 import com.example.connect4.Exceptions.ColumnFullException;
+import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
 import com.example.connect4.FourBoard;
 import com.example.connect4.R;
@@ -35,7 +36,7 @@ public abstract class Game {
 
     // MODIFIES: this
     // EFFECTS: creates a move for the computer
-    abstract public GameMove computerPlay() throws FullBoardEndGameException, ColumnFullException;
+    abstract public GameMove computerPlay() throws EndGameException, ColumnFullException;
 
     // MODIFIES: this
     // EFFECTS: returns row of column that player plays
@@ -57,13 +58,21 @@ public abstract class Game {
 
     // EFFECTS: if the game is over, returns the winning color; else, returns -1 or
     //          if the board is full, throws FullBoardGameException
-    public int isGameOver() throws FullBoardEndGameException {
+    public boolean isGameOver() throws FullBoardEndGameException {
         if (board.isFull()) {
             throw new FullBoardEndGameException();
         } else {
-            return board.isConnectFour();
+            return board.isConnectFour() != -1;
         }
 
+    }
+
+    public int getWinner() throws FullBoardEndGameException {
+        if (isGameOver()) {
+            return board.isConnectFour();
+        } else {
+            return -1;
+        }
     }
 
 //    public int[] getIds() {

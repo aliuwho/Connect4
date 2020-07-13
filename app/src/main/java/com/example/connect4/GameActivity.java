@@ -10,11 +10,18 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.connect4.Exceptions.ColumnFullException;
+import com.example.connect4.Exceptions.ComputerWinsEndGameException;
+import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
+import com.example.connect4.Exceptions.PersonWinsEndGameException;
 import com.example.connect4.games.Game;
+import com.example.connect4.games.GameMove;
 
+/**
+ * represents an activity which runs a game
+ **/
 public abstract class GameActivity extends AppCompatActivity {
-    protected GameManager gameManager;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,24 +32,164 @@ public abstract class GameActivity extends AppCompatActivity {
         // TODO: game over functionality
     }
 
-    protected abstract void setGameManager();
+    protected void setGame(Game game) {
+        this.game = game;
+    }
 
     /**
-     * runs the next stage of game on column tap
+     * Updates the next stage of game on column tap
      */
     public void columnPress(View view) {
         // because this is the player tap button
         try {
 //            gameManager.playerMove(view);
 //            gameManager.computerMove();
-            updatePieceGraphics(Game.PERSON, gameManager.playerMove(view));
-            updatePieceGraphics(Game.COMPUTER, gameManager.computerMove());
-            gameManager.checkGameOver();
+            updateGame(Game.PERSON, playerMove(view));
+            updateGame(Game.COMPUTER, computerMove());
+//            updatePieceGraphics(Game.PERSON, playerMove(view));
+//            findWinner();
+//            updatePieceGraphics(Game.COMPUTER, computerMove());
+//            findWinner();
         } catch (ColumnFullException e) {
             warnColumnFull();
-        } catch (FullBoardEndGameException e) {
-            endGameDialog("It's a Tie","Nobody won this round.");
+//        } catch (FullBoardEndGameException e) {
+//            endGameDialog("It's a Tie", "Nobody won this round.");
+//        } catch (PersonWinsEndGameException e) {
+//            endGameDialog("Congratulations!", "You beat the computer! Nice job.");
+//        } catch (ComputerWinsEndGameException e) {
+//            endGameDialog("Outsmarted", "The computer beat you. Better luck next time!");
+        } catch (EndGameException e) {
+            if (e.getClass().equals(FullBoardEndGameException.class)) {
+                endGameDialog("It's a Tie", "Nobody won this round.");
+            } else if (e.getClass().equals(PersonWinsEndGameException.class)) {
+                endGameDialog("Congratulations!", "You beat the computer! Nice job.");
+
+            } else {
+                endGameDialog("Outsmarted", "The computer beat you. Better luck next time!");
+
+            }
         }
+    }
+
+
+    /**
+     * Updates graphics based on player move & checks for endgame
+     *
+     * @param player representing the player move
+     * @param id     representing the move piece
+     */
+    public void updateGame(int player, int id) throws EndGameException {
+        updatePieceGraphics(player, id);
+        findWinner();
+    }
+
+
+    /**
+     * Updates game based on player input
+     *
+     * @param view: the button pressed
+     */
+    public int playerMove(View view) throws ColumnFullException {
+
+        int col = findColumn(view.getId());
+        int row = game.personPlay(col);
+        return game.getChipId(row, col);
+
+    }
+
+
+    /**
+     * finds column corresponding to button press ID
+     *
+     * @param id representing button press ID
+     * @return column number
+     */
+    private int findColumn(int id) {
+        switch (id) {
+            case R.id.col1:
+                return 0;
+            case R.id.col2:
+                return 1;
+            case R.id.col3:
+                return 2;
+            case R.id.col4:
+                return 3;
+            case R.id.col5:
+                return 4;
+            case R.id.col6:
+                return 5;
+            case R.id.col7:
+                return 6;
+            default:
+                return -1;
+        }
+    }
+
+
+    /**
+     * Updates game based on computer input
+     */
+    public int computerMove() throws EndGameException {
+        try {
+            GameMove computer = game.computerPlay();
+            return game.getChipId(computer.getRow(), computer.getColumn());
+
+        } catch (ColumnFullException e) {
+            throw new IllegalStateException();
+            //error occurred in computerPlay
+        }
+    }
+
+
+    /**
+     * Updates the color of a given Connect 4 piece
+     *
+     * @param color representing the update color
+     * @param id    representing the id of the piece to update
+     */
+    private void updatePieceGraphics(int color, int id) {
+        ImageView img = findViewById(id);
+        img.setVisibility(View.VISIBLE);
+        if (color == 1) {
+            img.setImageResource(R.drawable.blue_square_custom);
+        } else {
+            img.setImageResource(R.drawable.red_square_custom);
+        }
+    }
+
+
+    /**
+     * Checks if the game is over; if so, displays corresponding dialog
+     */
+    public void findWinner() throws EndGameException {
+        if (game.isGameOver()) {
+            int winner = game.getWinner();
+            if (winner == Game.PERSON) {
+                throw new PersonWinsEndGameException();
+            } else if (winner == Game.COMPUTER) {
+                throw new ComputerWinsEndGameException();
+            }
+
+        }
+    }
+
+
+    /**
+     * Displays dialog message when user tries to play a full column
+     */
+    protected void warnColumnFull() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("No Space");
+        builder.setMessage("The column is full! Try a different one.");
+        builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     /**
@@ -74,18 +221,6 @@ public abstract class GameActivity extends AppCompatActivity {
 
     }
 
-//    // EFFECTS: displays piece with given id and color with animation
-//    private void animate(int color, int id) {
-//        ImageView img = findViewById(id);
-//        img.setVisibility(View.VISIBLE);
-//        if (color == 1) {
-//            img.setImageResource(R.drawable.blue_square_custom);
-//        } else {
-//            img.setImageResource(R.drawable.red_square_custom);
-//        }
-//        img.setVisibility(View.INVISIBLE);
-//    }
-
 
     /**
      * Called when user taps the How To Play button
@@ -96,34 +231,11 @@ public abstract class GameActivity extends AppCompatActivity {
     }
 
     /**
-     * Displays dialog message when user tries to play a full column
+     * displays dialog representing end of game
+     *
+     * @param title representing the dialog title
+     * @param msg   representing the dialog message
      */
-    protected void warnColumnFull() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("No Space");
-        builder.setMessage("The column is full! Try a different one.");
-        builder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
-    // EFFECTS: displays piece with given id and color
-    private void updatePieceGraphics(int color, int id) {
-        ImageView img = findViewById(id);
-        img.setVisibility(View.VISIBLE);
-        if (color == 1) {
-            img.setImageResource(R.drawable.blue_square_custom);
-        } else {
-            img.setImageResource(R.drawable.red_square_custom);
-        }
-    }
-
     public void endGameDialog(String title, String msg) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
@@ -144,5 +256,19 @@ public abstract class GameActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
+
+//    // EFFECTS: displays piece with given id and color with animation
+//    private void animate(int color, int id) {
+//        ImageView img = findViewById(id);
+//        img.setVisibility(View.VISIBLE);
+//        if (color == 1) {
+//            img.setImageResource(R.drawable.blue_square_custom);
+//        } else {
+//            img.setImageResource(R.drawable.red_square_custom);
+//        }
+//        img.setVisibility(View.INVISIBLE);
+
+//    }
 
 }

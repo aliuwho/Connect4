@@ -21,7 +21,7 @@ public class NormalGame extends Game {
         } else {
             int i = firstMove(tryMoves());
             if (i == -1) {
-                System.out.println("something went wrong... no moves available but board is not full");
+//                System.out.println("something went wrong... no moves available but board is not full");
                 throw new IllegalArgumentException();
             } else {
                 return new GameMove(board.addChip(COMPUTER, i), i);
@@ -37,7 +37,7 @@ public class NormalGame extends Game {
             duplicate.setChips(board.getChips());
             try {
                 duplicate.addChip(PERSON, i);
-                if (isGameOver() != -1 && options[1] == -1) {
+                if (!isGameOver() && options[1] == -1) {
                     options[1] = i;
                 } else {
                     if (options[0] == -1) {
