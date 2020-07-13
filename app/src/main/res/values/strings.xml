@@ -9,4 +9,6 @@
     <string name="instructions3">
         Block your opponent from connecting four. </string>
     <string name="return_to_menu">Return To Menu</string>
+    <string name="easy">easy</string>
+    <string name="normal">normal</string>
 </resources>

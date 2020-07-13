@@ -48,9 +48,12 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
+                android:background="@color/colorPrimary"
                 android:onClick="easyGame"
-                android:text="easy"
-                android:textColor="@color/colorPrimary" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/easy"
+                android:textColor="@color/colorPrimaryDark" />
 
             <Button
                 android:id="@+id/normalMode"
@@ -63,9 +66,12 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
+                android:background="@color/colorPrimary"
                 android:onClick="normalGame"
-                android:text="normal"
-                android:textColor="@color/colorPrimary" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/normal"
+                android:textColor="@color/colorPrimaryDark" />
 
             <Button
                 android:id="@+id/retButton"
@@ -78,8 +84,12 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
+                android:background="@color/colorPrimary"
                 android:onClick="returnToMenu"
-                android:text="@string/return_to_menu" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/return_to_menu"
+                android:textColor="@color/colorPrimaryDark" />
 
         </LinearLayout>
     </ScrollView>

@@ -1,4 +1,4 @@
-package com.example.connect4;
+package com.example.connect4.GameActivities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import com.example.connect4.Exceptions.ComputerWinsEndGameException;
 import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
 import com.example.connect4.Exceptions.PersonWinsEndGameException;
+import com.example.connect4.HowToPlayActivity;
+import com.example.connect4.R;
 import com.example.connect4.games.Game;
 import com.example.connect4.games.GameMove;
 
@@ -39,7 +41,7 @@ public abstract class GameActivity extends AppCompatActivity {
     /**
      * Updates the next stage of game on column tap
      */
-    public void columnPress(View view) {
+    protected void columnPress(View view) {
         // because this is the player tap button
         try {
 //            gameManager.playerMove(view);
@@ -52,12 +54,6 @@ public abstract class GameActivity extends AppCompatActivity {
 //            findWinner();
         } catch (ColumnFullException e) {
             warnColumnFull();
-//        } catch (FullBoardEndGameException e) {
-//            endGameDialog("It's a Tie", "Nobody won this round.");
-//        } catch (PersonWinsEndGameException e) {
-//            endGameDialog("Congratulations!", "You beat the computer! Nice job.");
-//        } catch (ComputerWinsEndGameException e) {
-//            endGameDialog("Outsmarted", "The computer beat you. Better luck next time!");
         } catch (EndGameException e) {
             if (e.getClass().equals(FullBoardEndGameException.class)) {
                 endGameDialog("It's a Tie", "Nobody won this round.");
@@ -66,7 +62,6 @@ public abstract class GameActivity extends AppCompatActivity {
 
             } else {
                 endGameDialog("Outsmarted", "The computer beat you. Better luck next time!");
-
             }
         }
     }
@@ -78,7 +73,7 @@ public abstract class GameActivity extends AppCompatActivity {
      * @param player representing the player move
      * @param id     representing the move piece
      */
-    public void updateGame(int player, int id) throws EndGameException {
+    protected void updateGame(int player, int id) throws EndGameException {
         updatePieceGraphics(player, id);
         findWinner();
     }
@@ -89,7 +84,7 @@ public abstract class GameActivity extends AppCompatActivity {
      *
      * @param view: the button pressed
      */
-    public int playerMove(View view) throws ColumnFullException {
+    protected int playerMove(View view) throws ColumnFullException {
 
         int col = findColumn(view.getId());
         int row = game.personPlay(col);
@@ -104,7 +99,7 @@ public abstract class GameActivity extends AppCompatActivity {
      * @param id representing button press ID
      * @return column number
      */
-    private int findColumn(int id) {
+    protected int findColumn(int id) {
         switch (id) {
             case R.id.col1:
                 return 0;
@@ -129,7 +124,7 @@ public abstract class GameActivity extends AppCompatActivity {
     /**
      * Updates game based on computer input
      */
-    public int computerMove() throws EndGameException {
+    protected int computerMove() throws EndGameException {
         try {
             GameMove computer = game.computerPlay();
             return game.getChipId(computer.getRow(), computer.getColumn());
@@ -147,13 +142,13 @@ public abstract class GameActivity extends AppCompatActivity {
      * @param color representing the update color
      * @param id    representing the id of the piece to update
      */
-    private void updatePieceGraphics(int color, int id) {
+    protected void updatePieceGraphics(int color, int id) {
         ImageView img = findViewById(id);
         img.setVisibility(View.VISIBLE);
         if (color == 1) {
-            img.setImageResource(R.drawable.blue_square_custom);
+            img.setImageResource(R.drawable.chip_blue);
         } else {
-            img.setImageResource(R.drawable.red_square_custom);
+            img.setImageResource(R.drawable.chip_red);
         }
     }
 
@@ -161,7 +156,7 @@ public abstract class GameActivity extends AppCompatActivity {
     /**
      * Checks if the game is over; if so, displays corresponding dialog
      */
-    public void findWinner() throws EndGameException {
+    protected void findWinner() throws EndGameException {
         if (game.isGameOver()) {
             int winner = game.getWinner();
             if (winner == Game.PERSON) {
@@ -195,7 +190,7 @@ public abstract class GameActivity extends AppCompatActivity {
     /**
      * Called when user taps the Return To Menu button
      */
-    public void returnToMenu(View view) {
+    protected void returnToMenu(View view) {
 //        Intent intent = new Intent(this, MainActivity.class);
 //        startActivity(intent);
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -225,7 +220,7 @@ public abstract class GameActivity extends AppCompatActivity {
     /**
      * Called when user taps the How To Play button
      */
-    public void howToPlay(View view) {
+    protected void howToPlay(View view) {
         Intent intent = new Intent(this, HowToPlayActivity.class);
         startActivity(intent);
     }
@@ -236,7 +231,7 @@ public abstract class GameActivity extends AppCompatActivity {
      * @param title representing the dialog title
      * @param msg   representing the dialog message
      */
-    public void endGameDialog(String title, String msg) {
+    protected void endGameDialog(String title, String msg) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(msg);

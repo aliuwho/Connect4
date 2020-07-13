@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".EasyGameActivity">
+    android:background="@color/colorBackground"
+    tools:context=".GameActivities.EasyGameActivity">
 
-                            android:visibility="invisible" />
     <!-- COLUMN BUTTONS -->
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +26,7 @@
 
                 <Button
                     android:id="@+id/howToPlay"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
@@ -35,9 +34,12 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
                     android:onClick="howToPlay"
-                    android:text="@string/how_to_play" />
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/how_to_play"
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <Button
                     android:id="@+id/retButton"
@@ -49,8 +51,13 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="8dp"
+                    android:background="@color/colorPrimary"
                     android:onClick="returnToMenu"
-                    android:text="@string/return_to_menu" />
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="@string/return_to_menu"
+                    android:textColor="@color/colorPrimaryDark" />
+
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -207,7 +214,7 @@
                             android:layout_weight="1"
                             android:adjustViewBounds="true"
                             android:src="@drawable/red_square_custom"
-                            android:visibility="invisible"/>
+                            android:visibility="invisible" />
 
                         <ImageView
                             android:id="@+id/chip16"
@@ -517,7 +524,7 @@
                     android:cropToPadding="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:src="@drawable/connect4board"
+                    android:src="@drawable/dark_board"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
