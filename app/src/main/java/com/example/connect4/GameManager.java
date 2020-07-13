@@ -13,11 +13,11 @@ import com.example.connect4.Exceptions.FullBoardEndGameException;
 import com.example.connect4.games.Game;
 import com.example.connect4.games.GameMove;
 
-public class GameActivity {
+public class GameManager {
     private Game game;
     private AppCompatActivity activity;
 
-    public GameActivity(Game game, AppCompatActivity activity) {
+    public GameManager(Game game, AppCompatActivity activity) {
         this.game = game;
         this.activity = activity;
     }

@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.connect4.games.EasyGame;
 
 public class EasyGameActivity extends AppCompatActivity {
-    private GameActivity gameActivity;
+    private GameManager gameManager;
 //    private int[] ids;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gameActivity = new GameActivity(new EasyGame(), this);
+        gameManager = new GameManager(new EasyGame(), this);
         // TODO: set player to player selection color in game select screen
         // TODO: figure out saved instance states
         // TODO: add a new game function (which resets activity completely) & persistence (which continues activity)
@@ -35,21 +35,21 @@ public class EasyGameActivity extends AppCompatActivity {
      * runs the next stage of game on column tap
      */
     public void columnPress(View view) {
-        gameActivity.columnPress(view);
+        gameManager.columnPress(view);
     }
 
     /**
      * Called when user taps the Return To Menu button
      */
     public void returnToMenu(View view) {
-        gameActivity.returnToMenu(view);
+        gameManager.returnToMenu(view);
     }
 
     /**
      * Called when user taps the How To Play button
      */
     public void howToPlay(View view) {
-        gameActivity.howToPlay(view);
+        gameManager.howToPlay(view);
     }
 
 
