@@ -1,7 +1,5 @@
 package com.example.connect4.games;
 
-import android.util.Pair;
-
 import com.example.connect4.Exceptions.ColumnFullException;
 import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
@@ -18,7 +16,7 @@ public class NormalGame extends Game {
     }
 
     @Override
-    public Pair computerPlay() throws EndGameException, ColumnFullException {
+    public GameMove computerPlay() throws EndGameException, ColumnFullException {
         if (board.isFull()) {
             throw new FullBoardEndGameException();
         } else {
@@ -27,7 +25,7 @@ public class NormalGame extends Game {
                 System.out.println("something went wrong... no moves available but board is not full");
                 throw new EndGameException();
             } else {
-                return new Pair(board.addChip(COMPUTER, i), i);
+                return new GameMove(board.addChip(COMPUTER, i), i);
             }
         }
     }

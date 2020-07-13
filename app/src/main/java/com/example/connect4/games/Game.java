@@ -1,7 +1,5 @@
 package com.example.connect4.games;
 
-import android.util.Pair;
-
 import com.example.connect4.Exceptions.ColumnFullException;
 import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.FourBoard;
@@ -37,7 +35,7 @@ public abstract class Game {
 
     // MODIFIES: this
     // EFFECTS: creates a move for the computer
-    abstract public Pair computerPlay() throws EndGameException, ColumnFullException;
+    abstract public GameMove computerPlay() throws EndGameException, ColumnFullException;
 
     // MODIFIES: this
     // EFFECTS: returns row of column that player plays

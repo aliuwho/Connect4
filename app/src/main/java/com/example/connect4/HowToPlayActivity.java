@@ -1,10 +1,9 @@
 package com.example.connect4;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class HowToPlayActivity extends AppCompatActivity {
 
@@ -19,5 +18,6 @@ public class HowToPlayActivity extends AppCompatActivity {
      */
     public void back(View view) {
         onBackPressed();
+        finish();
     }
 }

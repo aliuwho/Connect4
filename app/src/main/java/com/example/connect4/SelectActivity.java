@@ -1,10 +1,10 @@
 package com.example.connect4;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SelectActivity extends AppCompatActivity {
 
@@ -24,6 +24,7 @@ public class SelectActivity extends AppCompatActivity {
 //        intent.putExtra(EXTRA_MESSAGE, message);
 //        Button button = (Button) findViewById(R.id.playGame);
         startActivity(intent);
+        finish();
 
     }
 
@@ -37,19 +38,7 @@ public class SelectActivity extends AppCompatActivity {
 //        intent.putExtra(EXTRA_MESSAGE, message);
 //        Button button = (Button) findViewById(R.id.playGame);
         startActivity(intent);
-
-    }
-
-    /**
-     * Called when user taps the Unbeatable button
-     */
-    public void unbeatableGame(View view) {
-        Intent intent = new Intent(this, UnbeatableGameActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
-//        Button button = (Button) findViewById(R.id.playGame);
-        startActivity(intent);
+        finish();
 
     }
 
@@ -57,12 +46,13 @@ public class SelectActivity extends AppCompatActivity {
      * Called when user taps the Return To Menu button
      */
     public void returnToMenu(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+//        Intent intent = new Intent(this, MainActivity.class);
 //        EditText editText = (EditText) findViewById(R.id.editText);
 //        String message = editText.getText().toString();
 //        intent.putExtra(EXTRA_MESSAGE, message);
 //        Button button = (Button) findViewById(R.id.playGame);
-        startActivity(intent);
+//        startActivity(intent);
+        finish();
 
     }
 }

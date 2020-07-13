@@ -1,22 +1,19 @@
 package com.example.connect4;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.connect4.Exceptions.ColumnFullException;
 import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
-import com.example.connect4.games.EasyGame;
 import com.example.connect4.games.Game;
+import com.example.connect4.games.GameMove;
 import com.example.connect4.games.NormalGame;
-
-import java.util.concurrent.TimeUnit;
 
 public class NormalGameActivity extends AppCompatActivity {
     private Game game;
@@ -76,8 +73,8 @@ public class NormalGameActivity extends AppCompatActivity {
 //            e.printStackTrace();
         }
         try {
-            Pair computer = game.computerPlay();
-            int id2 = game.getChipId((int) computer.first, (int) computer.second);
+            GameMove computer = game.computerPlay();
+            int id2 = game.getChipId(computer.getRow(), computer.getColumn());
             updatePieceGraphics(Game.COMPUTER, id2);
 
         } catch (ColumnFullException e) {
@@ -151,8 +148,9 @@ public class NormalGameActivity extends AppCompatActivity {
      * Called when user taps the Return To Menu button
      */
     public void returnToMenu(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+        finish();
 
     }
 

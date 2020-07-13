@@ -1,21 +1,20 @@
 package com.example.connect4;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.connect4.Exceptions.ColumnFullException;
 import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
 import com.example.connect4.games.EasyGame;
 import com.example.connect4.games.Game;
-
-import java.util.concurrent.TimeUnit;
+import com.example.connect4.games.GameMove;
 
 public class EasyGameActivity extends AppCompatActivity {
     private Game game;
@@ -73,22 +72,34 @@ public class EasyGameActivity extends AppCompatActivity {
         } catch (EndGameException e) {
             // TODO: end game stuff
             if (e.getClass() == FullBoardEndGameException.class) {
-                //game over :(
+                noWin();
             } else {
-                //congratulate winner
+                gameOver();
             }
 //            e.printStackTrace();
         }
         try {
-            Pair computer = game.computerPlay();
-            int id2 = game.getChipId((int) computer.first, (int) computer.second);
+            GameMove computer = game.computerPlay();
+            int id2 = game.getChipId(computer.getRow(), computer.getColumn());
             updatePieceGraphics(Game.COMPUTER, id2);
 
         } catch (ColumnFullException e) {
             e.printStackTrace();
+        } catch (FullBoardEndGameException e) {
+            noWin();
         } catch (EndGameException e) {
-            e.printStackTrace();
+            gameOver();
         }
+    }
+
+    public void gameOver() {
+        Intent intent = new Intent(this, NoWinActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void noWin() {
+        PopupWindow window = new PopupWindow();
     }
 
     /**
@@ -155,8 +166,9 @@ public class EasyGameActivity extends AppCompatActivity {
      * Called when user taps the Return To Menu button
      */
     public void returnToMenu(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, MainActivity.class);
+//        startActivity(intent);
+        finish();
 
     }
 

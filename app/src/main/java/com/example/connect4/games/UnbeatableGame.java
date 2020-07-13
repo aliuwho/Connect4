@@ -1,17 +1,12 @@
 package com.example.connect4.games;
 
-import android.util.Pair;
-
 import com.example.connect4.Exceptions.ColumnFullException;
 import com.example.connect4.Exceptions.EndGameException;
 import com.example.connect4.Exceptions.FullBoardEndGameException;
 import com.example.connect4.FourBoard;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class UnbeatableGame extends Game {
 
@@ -24,38 +19,63 @@ public class UnbeatableGame extends Game {
     }
 
     @Override
-    public Pair computerPlay() throws EndGameException, ColumnFullException {
+    public GameMove computerPlay() throws EndGameException, ColumnFullException {
         if (board.isFull()) {
             throw new FullBoardEndGameException();
         } else {
             FourBoard duplicate = new FourBoard();
             duplicate.setChips(board.getChips());
-            int ret = fnForBoard(duplicate, new ArrayList<Integer>(), new HashMap<Integer, Integer>());
-            return new Pair(board.addChip(COMPUTER, ret), ret);
+            int ret = fnForBoard(duplicate, 0);
+            return new GameMove(board.addChip(COMPUTER, ret), ret);
         }
     }
 
-    private int fnForBoard(FourBoard board, List<Integer> path, HashMap<Integer, Integer> wle) throws FullBoardEndGameException {
+    // given a board, will return first move or -1
+    public int fnForBoardVersion1(FourBoard board) {
         for (int i = 0; i < FourBoard.COLS; i++) {
-            try {
-                FourBoard duplicate = new FourBoard();
-                duplicate.setChips(board.getChips());
-                duplicate.addChip(COMPUTER, i);
-                if (duplicate.isGameOver() != -1) {
-                    //add to work list
-                    wle.put(path.get(0), path.size());
-                } else {
-                    path.add(i);
-                    return fnForBoards(getNextMoves(duplicate), path, wle);
-                }
-            } catch (ColumnFullException e) {
-                e.printStackTrace();
-            }
+
+            FourBoard duplicate = new FourBoard();
+            duplicate.setChips(board.getChips());
+            if (duplicate.canAddChip(i)) {
+                //add to work list
+                return i;
+            } /*else {
+                    fnForBoards(getNextMoves(duplicate));
+                }*/
+
         }
         return -1;
     }
 
-    private List<FourBoard> getNextMoves(FourBoard board) {
+    //given a board, will return first available move or -1 if none available
+    public int fnForBoard(FourBoard board, int count) {
+        for (int i = 0; i < FourBoard.COLS; i++) {
+            FourBoard duplicate = new FourBoard();
+            duplicate.setChips(board.getChips());
+            if (duplicate.canAddChip(i)) {
+                //add to work list
+                try {
+                    duplicate.addChip(COMPUTER, i);
+                    if (duplicate.isGameOver() > -1) {
+                        /* board is "solved" **/
+                        return i;
+                    }
+                } catch (ColumnFullException e) {
+                    e.printStackTrace();
+                    //should never be thrown
+                } catch (FullBoardEndGameException e) {
+//                    e.printStackTrace();
+                    /* board is "solved" **/
+                    return i;
+                }
+                return fnForBoards(getNextMoves(duplicate), count++);
+            }
+
+        }
+        return -1;
+    }
+
+    public List<FourBoard> getNextMoves(FourBoard board) {
         List<FourBoard> nextMoves = new ArrayList<>();
         for (int i = 0; i < FourBoard.COLS; i++) {
             try {
@@ -70,30 +90,19 @@ public class UnbeatableGame extends Game {
         return nextMoves;
     }
 
-
-    private int fnForBoards(List<FourBoard> boards, List<Integer> path, HashMap<Integer, Integer> wle) throws FullBoardEndGameException {
+    //given a list of boards, returns winning move or -1 if no move available
+    private int fnForBoards(List<FourBoard> boards, int count) {
         if (boards.isEmpty()) {
-            int minIndex = 0;
-            int minLen = Integer.MAX_VALUE;
-            for (int i = 0; i < FourBoard.COLS; i++) {
-                try {
-                    int len = wle.get(i);
-                    if (len < minLen) {
-                        minIndex = i;
-                        minLen = len;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return minIndex;
-
+            return -1;
         } else {
             for (int i = 0; i < boards.size(); i++) {
                 FourBoard board = boards.get(i);
-                fnForBoard(board, path, wle);
+                int col = fnForBoardVersion1(board);
+                if (col != -1) {
+                    return col;
+                }
             }
-            return -1;
         }
+        return -1;
     }
 }

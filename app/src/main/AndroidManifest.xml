@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".NoWinActivity"></activity>
         <activity android:name=".HowToPlayActivity" />
-        <activity android:name=".UnbeatableGameActivity" />
         <activity android:name=".NormalGameActivity" />
         <activity android:name=".EasyGameActivity" />
         <activity android:name=".SelectActivity" />
