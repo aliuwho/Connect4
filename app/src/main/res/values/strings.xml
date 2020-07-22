@@ -11,4 +11,10 @@
     <string name="return_to_menu">Return To Menu</string>
     <string name="easy">easy</string>
     <string name="normal">normal</string>
+    <string name="connectBoardDescription">A Connect4 Board</string>
+    <string name="back">Back</string>
+    <string name="quit">quit</string>
+    <string name="how_to_img1">Tap a column to place a chip.</string>
+    <string name="how_to_img2">Block your opponent from connecting four chips.</string>
+    <string name="how_to_img3">Connect four chips diagonally, horizontally, or vertically.</string>
 </resources>

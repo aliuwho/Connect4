@@ -8,8 +8,8 @@ import com.example.connect4.R;
 
 // represents a connect 4 game
 public abstract class Game {
-    protected FourBoard board;
-    protected int[] ids = new int[]{R.id.chip00, R.id.chip01, R.id.chip02, R.id.chip03, R.id.chip04, R.id.chip05, R.id.chip06,
+    protected final FourBoard board;
+    protected final int[] ids = new int[]{R.id.chip00, R.id.chip01, R.id.chip02, R.id.chip03, R.id.chip04, R.id.chip05, R.id.chip06,
             R.id.chip10, R.id.chip11, R.id.chip12, R.id.chip13, R.id.chip14, R.id.chip15, R.id.chip16,
             R.id.chip20, R.id.chip21, R.id.chip22, R.id.chip23, R.id.chip24, R.id.chip25, R.id.chip26,
             R.id.chip30, R.id.chip31, R.id.chip32, R.id.chip33, R.id.chip34, R.id.chip35, R.id.chip36,
@@ -44,14 +44,6 @@ public abstract class Game {
         return board.addChip(PERSON, column);
     }
 
-    public static int getCOMPUTER() {
-        return COMPUTER;
-    }
-
-    public static int getPERSON() {
-        return PERSON;
-    }
-
     public int getChipId(int row, int col) {
         return ids[(FourBoard.ROWS - row - 1) * 7 + col];
     }
@@ -67,6 +59,9 @@ public abstract class Game {
 
     }
 
+    /**
+     * returns winning player
+     **/
     public int getWinner() throws FullBoardEndGameException {
         if (isGameOver()) {
             return board.isConnectFour();

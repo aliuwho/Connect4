@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="?android:attr/buttonBarStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
     tools:context=".GameActivities.EasyGameActivity">
 
     <!-- COLUMN BUTTONS -->
@@ -26,6 +26,7 @@
 
                 <Button
                     android:id="@+id/howToPlay"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -69,7 +70,6 @@
 
                 <!-- CHIP TABLE -->
                 <TableLayout
-                    android:id="@+id/chipsTable"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -79,7 +79,6 @@
                     app:layout_constraintTop_toTopOf="@+id/connectBoard">
 
                     <TableRow
-                        android:id="@+id/row5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -157,7 +156,6 @@
                     </TableRow>
 
                     <TableRow
-                        android:id="@+id/row4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -227,7 +225,6 @@
                     </TableRow>
 
                     <TableRow
-                        android:id="@+id/row3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -297,7 +294,6 @@
                     </TableRow>
 
                     <TableRow
-                        android:id="@+id/row2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -367,7 +363,6 @@
                     </TableRow>
 
                     <TableRow
-                        android:id="@+id/row1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -437,7 +432,6 @@
                     </TableRow>
 
                     <TableRow
-                        android:id="@+id/row0"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
@@ -520,7 +514,7 @@
                     android:layout_marginBottom="8dp"
                     android:adjustViewBounds="true"
                     android:clickable="false"
-                    android:contentDescription="TODO"
+                    android:contentDescription="@string/connectBoardDescription"
                     android:cropToPadding="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -531,7 +525,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
-                    android:id="@+id/columns"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:orientation="horizontal"

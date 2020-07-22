@@ -63,6 +63,8 @@ public abstract class GameActivity extends AppCompatActivity {
             } else {
                 endGameDialog("Outsmarted", "The computer beat you. Better luck next time!");
             }
+        } catch (Exception e) {
+            endGameDialog("error unknown", e.getMessage());
         }
     }
 
@@ -124,15 +126,9 @@ public abstract class GameActivity extends AppCompatActivity {
     /**
      * Updates game based on computer input
      */
-    protected int computerMove() throws EndGameException {
-        try {
-            GameMove computer = game.computerPlay();
-            return game.getChipId(computer.getRow(), computer.getColumn());
-
-        } catch (ColumnFullException e) {
-            throw new IllegalStateException();
-            //error occurred in computerPlay
-        }
+    protected int computerMove() throws EndGameException, ColumnFullException {
+        GameMove computer = game.computerPlay();
+        return game.getChipId(computer.getRow(), computer.getColumn());
     }
 
 
